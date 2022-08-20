@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 
-. ./common.zsh
+. $(dirname "$0")/common.zsh
 
 hwclock --systohc
 
 read -rsk 1
-ln -sf /mnt/usr/share/zoneinfo/"$(cd /mnt/usr/share/zoneinfo; fzf)" /mnt/etc/localtime
+ln -sf /usr/share/zoneinfo/"$(cd /usr/share/zoneinfo; fzf)" /mnt/etc/localtime
 locale-gen
 
 bootctl install
