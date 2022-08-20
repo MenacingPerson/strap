@@ -15,7 +15,7 @@ sleep 5
 
 timedatectl set-ntp true
 
-pacman -Sy --needed archlinux-keyring
+pacman -Sy --needed --noconfirm archlinux-keyring
 
 pacstrap /mnt base base-devel linux linux-firmware networkmanager btrfs-progs zsh sbctl fzf sway firefox grml-zsh-config
 arch-chroot /mnt /usr/bin/true
