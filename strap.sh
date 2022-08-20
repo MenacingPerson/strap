@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 pacman -S --needed --noconfirm zsh
 
-exec ./setup.zsh
+exec ./strap.zsh

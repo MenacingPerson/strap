@@ -13,19 +13,34 @@ echo "Please assure the following:
 
 sleep 5
 
-pacstrap /mnt base base-devel linux linux-firmware networkmanager btrfs-progs zsh sbctl
-arch-chroot /mnt /usr/bin/true
-echo
-
 timedatectl set-ntp true
 
+pacstrap /mnt base base-devel linux linux-firmware networkmanager btrfs-progs zsh sbctl fzf sway firefox grml-zsh-config
+arch-chroot /mnt /usr/bin/true
+
 genfstab -U /mnt
+
 if ! ask "Is this fstab correct?"
 then
     exit 1
 fi
 genfstab -U /mnt >> /mnt/etc/fstab
 
+read -rsk 1
+
+ln -sf /mnt/usr/share/zoneinfo/"$(cd /usr/share/zoneinfo; fzf)" /mnt/etc/localtime
+
+echo arch > /mnt/etc/hostname
+
+echo 'Defaults passwd_timeout=0
+Defaults pwfeedback
+%wheel ALL=(ALL:ALL) ALL
+Defaults insults' > /mnt/etc/sudoers.d/custom
+
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+
 mkdir -p /mnt/strap
 cp -r . /mnt/strap
 arch-chroot /mnt /strap/in-chroot.zsh
+
+rm -rf /mnt/strap
