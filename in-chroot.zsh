@@ -5,7 +5,7 @@
 hwclock --systohc
 
 read -rsk 1
-ln -sf /usr/share/zoneinfo/"$(cd /usr/share/zoneinfo; fzf)" /mnt/etc/localtime
+ln -sf /usr/share/zoneinfo/"$(cd /usr/share/zoneinfo; fzf)" /etc/localtime
 locale-gen
 
 bootctl install
