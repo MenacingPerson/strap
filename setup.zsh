@@ -11,18 +11,21 @@ echo "Please assure the following:
    - /home is LINUX-HOME
    - /boot/efi is LINUX-BOOT"
 
-pacstrap /mnt base base-devel linux linux-firmware networkmanager
+sleep 5
+
+pacstrap /mnt base base-devel linux linux-firmware networkmanager btrfs-progs zsh sbctl
 arch-chroot /mnt /usr/bin/true
 echo
 
 timedatectl set-ntp true
 
-genfstab
+genfstab -U /mnt
 if ! ask "Is this fstab correct?"
 then
     exit 1
 fi
-genfstab >> /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 
-
-arch-chroot /mnt ./in-chroot.zsh
+mkdir -p /mnt/strap
+cp -r . /mnt/strap
+arch-chroot /mnt /strap/in-chroot.zsh

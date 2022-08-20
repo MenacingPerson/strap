@@ -1,1 +1,1 @@
-root=LINUX-ROOT rootflags=subvol=@ rw
+root=/dev/mapper/root rootflags=subvol=@ rw

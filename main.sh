@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-pacman -S zsh
+pacman -S --needed --noconfirm zsh
 
 exec ./setup.zsh
