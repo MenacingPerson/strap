@@ -28,7 +28,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 read -rsk 1
 
-ln -sf /mnt/usr/share/zoneinfo/"$(cd /usr/share/zoneinfo; fzf)" /mnt/etc/localtime
+ln -sf /mnt/usr/share/zoneinfo/"$(cd /mnt/usr/share/zoneinfo; fzf)" /mnt/etc/localtime
 
 echo arch > /mnt/etc/hostname
 
