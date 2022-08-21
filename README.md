@@ -1,5 +1,5 @@
 # Strap
 
 ```sh
-./strap.sh
+./main.sh <Boot partition> <Root partition> <Home partition>
 ```
