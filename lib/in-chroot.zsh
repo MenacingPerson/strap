@@ -2,11 +2,11 @@
 
 . $(dirname "$0")/common.zsh
 
-hwclock --systohc
-
 echo "Choose locale now."
 read -rsk 1
 ln -sf /usr/share/zoneinfo/"$(cd /usr/share/zoneinfo; fzf)" /etc/localtime
+hwclock --systohc
+
 locale-gen
 
 bootctl install
