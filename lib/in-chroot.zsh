@@ -12,7 +12,7 @@ locale-gen
 bootctl install
 mkinitcpio -P -c $dir/mkinitcpio
 cp ./cmd /etc/kernel/cmdline
-sbctl bundle -c /etc/kernel/cmdline /boot/efi/EFI/Linux/arch.efi
+sbctl bundle -k /boot/vmlinuz-linux-lts -f /boot/initramfs-linux-lts.img -c /etc/kernel/cmdline /boot/efi/EFI/Linux/arch.efi
 
 useradd -mG wheel arch
 passwd arch
