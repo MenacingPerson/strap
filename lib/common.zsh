@@ -6,10 +6,15 @@ dir=$(dirname $(realpath $0))
 cd $dir
 
 function ask {
-    read -rqs "?$1 [Y/N]: "
-    x=$?
+    local ans
+    read -rsk1 "?$1 [Y/N]: " ans
+    if [[ ans = "[Yy]" || -z ans ]]
+    then
+        return 0
+    else
+        exit 1
+    fi
     echo
-    return $x
 }
 
 function ins {
