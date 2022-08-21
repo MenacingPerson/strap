@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-. ./common.zsh
+. $(dirname $(realpath "$0"))/common.zsh
 
 echo "Please assure the following:
 1. UEFI mode is on
