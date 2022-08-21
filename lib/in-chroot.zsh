@@ -10,6 +10,7 @@ hwclock --systohc
 locale-gen
 
 bootctl install
+touch /etc/vconsole.conf
 mkinitcpio -P -c $dir/mkinitcpio
 cp ./cmd /etc/kernel/cmdline
 sbctl bundle -k /boot/vmlinuz-linux-lts -f /boot/initramfs-linux-lts.img -c /etc/kernel/cmdline /boot/efi/EFI/Linux/arch.efi
