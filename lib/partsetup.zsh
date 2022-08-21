@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-. ./common.zsh
+. $(dirname $(realpath "$0"))/common.zsh
 
 echo "Setting up partitions..."
 if [[ $# != 3 ]]
