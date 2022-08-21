@@ -39,6 +39,6 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 mkdir -p /mnt/strap
 cp -r . /mnt/strap
-arch-chroot /mnt /strap/in-chroot.zsh
+arch-chroot /mnt /strap/lib/in-chroot.zsh
 
 rm -rf /mnt/strap

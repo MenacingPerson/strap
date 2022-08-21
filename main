@@ -2,4 +2,5 @@
 
 pacman -S --needed --noconfirm zsh
 
-exec ./strap.zsh
+./lib/partsetup.zsh $@
+exec ./lib/strap.zsh
