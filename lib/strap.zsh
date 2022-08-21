@@ -5,11 +5,7 @@
 echo "Please assure the following:
 1. UEFI mode is on
 2. Secure boot is off
-3. Internet connection is valid
-4. Partitioning is complete in /mnt:
-   - Root is LINUX-ROOT
-   - /home is LINUX-HOME
-   - /boot/efi is LINUX-BOOT"
+3. Internet connection is valid"
 
 sleep 5
 
