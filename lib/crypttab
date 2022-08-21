@@ -1,0 +1,1 @@
+home           LABEL=LINUX-HOME                             none                    tpm2-device=auto
