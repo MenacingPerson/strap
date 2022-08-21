@@ -24,6 +24,10 @@ then
 fi
 genfstab -U /mnt >> /mnt/etc/fstab
 
+cp /mnt/etc/crypttab /mnt/etc/crypttab.initramfs
+cat ./crypttab >> /mnt/etc/crypttab
+cat ./crypttab.initramfs >> /mnt/etc/crypttab.initramfs
+
 echo arch > /mnt/etc/hostname
 
 echo 'Defaults passwd_timeout=0
