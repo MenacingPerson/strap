@@ -8,11 +8,9 @@ cd $dir
 function ask {
     local ans
     read -rsk1 "?$1 [Y/N]: " ans
-    if [[ ans = "[Yy]" || -z ans ]]
+    if ! [[ $ans =~ "[Yy]" || $ans = $'\n' ]]
     then
-        return 0
-    else
-        exit 1
+        return 1
     fi
     echo
 }
