@@ -43,7 +43,8 @@ do
     btrfs subvolume create /mnt/$i
 done
 
-mount /dev/mapper/root /mnt -o compress=zstd:1,subvol=@,remount
+umount /mnt
+mount /dev/mapper/root /mnt -o compress=zstd:1,subvol=@
 
 mkdir -p /mnt/{boot/efi,home,var/{log,cache}}
 
@@ -53,9 +54,8 @@ mount /dev/mapper/root /mnt/var/cache -o compress=zstd:1,subvol=@varcache
 mount "$1" /mnt/boot/efi
 
 mount /dev/mapper/home /mnt/home -o compress=zstd:1
-
 btrfs subvolume create /mnt/home/@home
-
-mount /dev/mapper/home /mnt/home -o compress=zstd:1,subvol=@home,remount
+umount /mnt/home
+mount /dev/mapper/home /mnt/home -o compress=zstd:1,subvol=@home
 
 echo "Complete!"
