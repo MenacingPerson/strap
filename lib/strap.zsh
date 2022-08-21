@@ -30,6 +30,8 @@ cat ./crypttab.initramfs >> /mnt/etc/crypttab.initramfs
 
 echo arch > /mnt/etc/hostname
 
+cp ./mkinitcpio /mnt/etc/mkinitcpio.conf
+
 echo 'Defaults passwd_timeout=0
 Defaults pwfeedback
 %wheel ALL=(ALL:ALL) ALL
