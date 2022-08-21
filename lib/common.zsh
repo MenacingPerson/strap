@@ -11,3 +11,7 @@ function ask {
     echo
     return $x
 }
+
+function ins {
+    pacman -S --needed --noconfirm $@
+}
