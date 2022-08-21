@@ -5,10 +5,10 @@
 echo "Setting up partitions..."
 if [[ $# != 3 ]]
 then
-    echo "Layout must be the following:
-          \$1: Root partition (LINUX-ROOT, /)
-          \$2: Home partition (LINUX-HOME, /home)
-          \$3: Boot partition (LINUX-UEFI, /boot/efi)"
+    echo 'Layout must be the following:
+          $1: Boot partition (LINUX-UEFI, /boot/efi)
+          $2: Root partition (LINUX-ROOT, /)
+          $3: Home partition (LINUX-HOME, /home)'
     exit 1
 fi
 
@@ -21,18 +21,18 @@ do
     fi
 done
 
-echo "==> Creating LUKS container 'root' for $1:"
-cryptsetup luksFormat --label LINUX-ROOT "$1"
-cryptsetup open "$1" root
-mkfs.btrfs --label LINUX-ROOT-DECRYPT "$1"
+echo "==> Creating FAT32 partition for $1:"
+mkfs.fat -F32 -n LINUX-UEFI "$1"
 
-echo "==> Creating LUKS container 'home' for $2:"
-cryptsetup luksFormat --label LINUX-HOME "$2"
-cryptsetup open "$2" home
-mkfs.btrfs --label LINUX-HOME-DECRYPT "$2"
+echo "==> Creating LUKS container 'root' for $2:"
+cryptsetup luksFormat --label LINUX-ROOT "$2"
+cryptsetup open "$2" root
+mkfs.btrfs --label LINUX-ROOT-DECRYPT /dev/mapper/root
 
-echo "==> Creating FAT32 partition for $3:"
-mkfs.fat -F32 -n LINUX-UEFI "$3"
+echo "==> Creating LUKS container 'home' for $3:"
+cryptsetup luksFormat --label LINUX-HOME "$3"
+cryptsetup open "$3" home
+mkfs.btrfs --label LINUX-HOME-DECRYPT /dev/mapper/home
 
 echo "==> Mounting and creating subvolumes:"
 
@@ -47,7 +47,7 @@ mount /dev/mapper/root /mnt -o compress=zstd:1,subvol=@,remount
 
 mkdir -p /mnt/{boot/efi,home,var/{log,cache}}
 
-mount "$3" /mnt/boot/efi
+mount "$1" /mnt/boot/efi
 
 mount /dev/mapper/home /mnt/home -o compress=zstd:1
 
