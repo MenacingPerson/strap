@@ -38,6 +38,7 @@ do
 done
 
 echo "==> Creating FAT32 partition for $1:"
+parted set "$1" esp on
 mkfs.fat -F32 -n LINUX-UEFI "$1"
 
 echo "==> Creating LUKS container 'root' for $2:"
