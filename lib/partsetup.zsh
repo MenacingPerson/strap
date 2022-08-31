@@ -67,7 +67,7 @@ mkdir -p /mnt/{boot/efi,home,var/{log,cache}}
 mount /dev/mapper/root /mnt/var/log -o compress=zstd:1,subvol=@varlog,noatime
 mount /dev/mapper/root /mnt/var/cache -o compress=zstd:1,subvol=@varcache,noatime
 
-mount "$1" /mnt/boot/efi,noatime
+mount "$1" /mnt/boot/efi -o noatime
 
 mount /dev/mapper/home /mnt/home -o compress=zstd:1,noatime
 btrfs subvolume create /mnt/home/@home
