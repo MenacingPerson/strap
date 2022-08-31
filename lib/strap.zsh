@@ -34,10 +34,6 @@ arch-chroot /mnt /usr/bin/true
 
 genfstab -U /mnt
 
-if ! ask "Is this fstab correct?"
-then
-    exit 1
-fi
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp /mnt/etc/crypttab /mnt/etc/crypttab.initramfs
