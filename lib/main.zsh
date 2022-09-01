@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 # strap: A simple set of scripts to set up arch
 # Copyright (C) 2022 Sam
@@ -16,8 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e
+. $(dirname $(realpath "$0"))/common.zsh
 
-pacman -S --needed --noconfirm zsh
+read -rs "?Enter a password: " PASS
+echo
 
-exec ./lib/main.zsh $@
+source ./partsetup.zsh
+source ./strap.zsh

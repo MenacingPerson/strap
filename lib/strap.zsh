@@ -29,7 +29,10 @@ timedatectl set-ntp true
 
 ins -y archlinux-keyring
 
-pacstrap /mnt base base-devel linux-lts linux-firmware networkmanager vim btrfs-progs zsh sbctl fzf sway firefox grml-zsh-config
+pacstrap /mnt base base-devel linux-lts linux-firmware \
+              networkmanager vim btrfs-progs zsh sbctl \
+              fzf sway firefox grml-zsh-config git
+
 arch-chroot /mnt /usr/bin/true
 
 genfstab -U /mnt
