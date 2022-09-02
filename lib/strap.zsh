@@ -30,8 +30,8 @@ timedatectl set-ntp true
 ins -y archlinux-keyring
 
 pacstrap /mnt base base-devel linux-lts linux-firmware \
-              networkmanager vim btrfs-progs zsh fzf \
-              sway firefox grml-zsh-config git
+              networkmanager vim btrfs-progs zsh \
+              yadm polkit grml-zsh-config git fzf
 
 arch-chroot /mnt /usr/bin/true
 
