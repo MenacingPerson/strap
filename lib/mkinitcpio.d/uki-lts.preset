@@ -1,0 +1,13 @@
+ALL_config="/etc/mkinitcpio.conf"
+ALL_microcode="/boot/*-ucode.img"
+
+PRESETS=('default' 'fallback')
+
+default_kver="/boot/vmlinuz-linux-lts"
+default_image="/boot/initramfs-linux-lts.img"
+default_efi_image="/boot/efi/EFI/Linux/archlinux-lts.efi"
+
+fallback_kver="/boot/vmlinuz-linux-lts"
+fallback_image="/boot/initramfs-linux-lts-fallback.img"
+fallback_efi_image="/boot/efi/EFI/Linux/archlinux-lts-fallback.efi"
+fallback_options="-S autodetect"

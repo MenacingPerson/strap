@@ -48,6 +48,7 @@ echo arch > /mnt/etc/hostname
 echo en_US.UTF-8 >> /etc/locale.gen
 
 cp ./mkinitcpio /mnt/etc/mkinitcpio.conf
+cp -r ./mkinitcpio.d /mnt/etc/mkinitcpio.d
 
 echo 'Defaults passwd_timeout=0
 Defaults pwfeedback
