@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-. $(dirname "$0")/common.zsh
+. $(dirname $(realpath "$0"))/common.zsh
 
 echo "Choose locale now."
 read -rsk 1
