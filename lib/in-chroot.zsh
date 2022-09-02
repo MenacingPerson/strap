@@ -27,9 +27,8 @@ locale-gen
 
 bootctl install
 touch /etc/vconsole.conf
-mkinitcpio -P
 cp ./cmd /etc/kernel/cmdline
-sbctl bundle -k /boot/vmlinuz-linux-lts -f /boot/initramfs-linux-lts.img -p "$(bootctl --print-esp-path)" /boot/efi/EFI/Linux/arch.efi
+mkinitcpio -P
 
 useradd -mG wheel arch
 passwd arch

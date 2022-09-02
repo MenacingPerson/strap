@@ -30,8 +30,8 @@ timedatectl set-ntp true
 ins -y archlinux-keyring
 
 pacstrap /mnt base base-devel linux-lts linux-firmware \
-              networkmanager vim btrfs-progs zsh sbctl \
-              fzf sway firefox grml-zsh-config git
+              networkmanager vim btrfs-progs zsh fzf \
+              sway firefox grml-zsh-config git
 
 arch-chroot /mnt /usr/bin/true
 
@@ -48,7 +48,7 @@ echo arch > /mnt/etc/hostname
 echo en_US.UTF-8 >> /etc/locale.gen
 
 cp ./mkinitcpio /mnt/etc/mkinitcpio.conf
-cp -r ./mkinitcpio.d /mnt/etc/mkinitcpio.d
+cp ./mkinitcpio.d/uki-lts.preset /mnt/etc/mkinitcpio.d
 
 echo 'Defaults passwd_timeout=0
 Defaults pwfeedback
