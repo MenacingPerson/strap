@@ -1,1 +1,1 @@
-root           LABEL=LINUX-ROOT                             none                    tpm2-device=auto,discard
+root           LABEL=LINUX-ROOT                             none                    discard,tpm2-device=auto
