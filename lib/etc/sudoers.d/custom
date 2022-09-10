@@ -1,0 +1,4 @@
+Defaults passwd_timeout=0
+Defaults pwfeedback
+%wheel ALL=(ALL:ALL) ALL
+Defaults insults

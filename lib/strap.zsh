@@ -47,15 +47,7 @@ echo arch > /mnt/etc/hostname
 
 echo 'en_US.UTF-8 UTF-8' >> /mnt/etc/locale.gen
 
-cp ./mkinitcpio /mnt/etc/mkinitcpio.conf
-cp ./mkinitcpio.d/uki-lts.preset /mnt/etc/mkinitcpio.d
-
-echo 'Defaults passwd_timeout=0
-Defaults pwfeedback
-%wheel ALL=(ALL:ALL) ALL
-Defaults insults' > /mnt/etc/sudoers.d/custom
-
-echo 'LANG=en_US.UTF-8' > /mnt/etc/locale.conf
+cp -r etc /mnt/etc
 
 mkdir -p /mnt/strap
 cp -r .. /mnt/strap
