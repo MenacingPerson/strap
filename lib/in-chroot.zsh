@@ -26,12 +26,11 @@ hwclock --systohc
 locale-gen
 
 bootctl install
-touch /etc/vconsole.conf
 mkinitcpio -P
 
 useradd -mG wheel arch
-passwd arch <<< ${idk}$'\n'${idk}
-passwd <<< ${idk}$'\n'${idk}
+passwd arch <<< ${1}$'\n'${1}
+passwd <<< ${1}$'\n'${1}
 
 echo "Do more setup now..."
 
