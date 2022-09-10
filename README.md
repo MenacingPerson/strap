@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```sh
 cfdisk # Partition, make sure to mark EFI partition as boot/esp flag.
 pacman -S git
-git clone git@github.com:Samisafool/strap.git
+git clone https://github.com/Samisafool/strap.git
 cd strap
 ./main <Boot partition> <Root partition> <Home partition>
 ```
