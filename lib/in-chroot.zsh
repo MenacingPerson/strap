@@ -31,8 +31,8 @@ cp ./cmd /etc/kernel/cmdline
 mkinitcpio -P
 
 useradd -mG wheel arch
-passwd arch <<< "$1"
-passwd <<< "$1"
+passwd arch <<< ${idk}$'\n'${idk}
+passwd <<< ${idk}$'\n'${idk}
 
 echo "Do more setup now..."
 
