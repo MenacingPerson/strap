@@ -45,7 +45,7 @@ cat ./crypttab.initramfs >> /mnt/etc/crypttab.initramfs
 
 echo arch > /mnt/etc/hostname
 
-echo en_US.UTF-8 >> /etc/locale.gen
+echo en_US.UTF-8 >> /mnt/etc/locale.gen
 
 cp ./mkinitcpio /mnt/etc/mkinitcpio.conf
 cp ./mkinitcpio.d/uki-lts.preset /mnt/etc/mkinitcpio.d
@@ -55,7 +55,7 @@ Defaults pwfeedback
 %wheel ALL=(ALL:ALL) ALL
 Defaults insults' > /mnt/etc/sudoers.d/custom
 
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "LANG=en_US.UTF-8" > /mnt/etc/locale.conf
 
 mkdir -p /mnt/strap
 cp -r .. /mnt/strap
