@@ -47,7 +47,7 @@ echo arch > /mnt/etc/hostname
 
 echo 'en_US.UTF-8 UTF-8' >> /mnt/etc/locale.gen
 
-cp -r etc /mnt/etc
+cp -r ./etc /mnt
 
 mkdir -p /mnt/strap
 cp -r .. /mnt/strap

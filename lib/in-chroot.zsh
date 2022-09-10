@@ -27,7 +27,6 @@ locale-gen
 
 bootctl install
 touch /etc/vconsole.conf
-cp ./cmd /etc/kernel/cmdline
 mkinitcpio -P
 
 useradd -mG wheel arch
