@@ -4,7 +4,7 @@
 
 . $(dirname $(realpath "$0"))/common.zsh
 
-echo "Choose locale now."
+echo "Press enter to choose locale now."
 read -rsk 1
 ln -sf /usr/share/zoneinfo/"$(cd /usr/share/zoneinfo; fzf)" /etc/localtime
 hwclock --systohc
@@ -13,6 +13,8 @@ locale-gen
 
 bootctl install
 mkinitcpio -P
+
+systemctl enable NetworkManager
 
 useradd -mG wheel arch
 passwd arch <<< ${1}$'\n'${1}
