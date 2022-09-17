@@ -18,6 +18,9 @@ useradd -mG wheel arch
 passwd arch <<< ${1}$'\n'${1}
 passwd <<< ${1}$'\n'${1}
 
+su arch -c "chsh -s /usr/bin/zsh <<< ${1}"
+chsh -s /usr/bin/zsh
+
 echo "Do more setup now..."
 
 exec zsh
