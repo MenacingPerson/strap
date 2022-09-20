@@ -4,8 +4,7 @@
 
 . $(dirname $(realpath "$0"))/common.zsh
 
-read -rs "?Enter a password: " PASS
-echo
+PASS="$(systemd-ask-password)"
 
 source ./partsetup.zsh
 source ./strap.zsh
