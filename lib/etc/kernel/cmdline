@@ -1,1 +1,1 @@
-root=/dev/mapper/root rw rootflags=subvol=@ zswap.enabled=0 lockdown=confidentiality bgrt_disable loglevel=3 quiet rd.systemd.show_status=auto rd.udev.log_level=3 intel_iommu=on iommu=pt
+root=/dev/mapper/root rw rootflags=subvol=@
