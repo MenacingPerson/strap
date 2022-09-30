@@ -19,11 +19,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # Strap
 
 ```sh
-pacman-key --init
-pacman-key --populate
-cfdisk # Partition, make sure to mark EFI partition as boot/esp flag.
-pacman -Sy git
-git clone https://github.com/Samisafool/strap.git
-cd strap
+source <(curl -fsSL https://raw.githubusercontent.com/Samisafool/strap/main/curl.sh)
 ./main <Boot partition> <Root partition> <Home partition>
 ```
