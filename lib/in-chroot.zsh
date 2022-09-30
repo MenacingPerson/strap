@@ -4,9 +4,9 @@
 
 . $(dirname $(realpath "$0"))/common.zsh
 
-echo "Press enter to choose locale now."
+echo "====> Press enter to choose locale now."
 read -rsk 1
-ln -sf /usr/share/zoneinfo/"$(cd /usr/share/zoneinfo; fzf)" /etc/localtime
+ln -s /usr/share/zoneinfo/"$(cd /usr/share/zoneinfo; fzf)" /etc/localtime
 hwclock --systohc
 
 locale-gen
