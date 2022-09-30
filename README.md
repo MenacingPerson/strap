@@ -19,6 +19,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # Strap
 
 ```sh
-source <(curl -fsSL https://raw.githubusercontent.com/Samisafool/strap/main/curl.sh)
+. <(curl -fsSL https://github.com/Samisafool/strap/raw/main/curl.sh)
 ./main <Boot partition> <Root partition> <Home partition>
 ```
