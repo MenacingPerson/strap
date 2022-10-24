@@ -23,14 +23,17 @@ do
     fi
 done
 
-echo "==> Setting PARTLABELs"
 mm_uefi=($(mm "$1"))
 mm_root=($(mm "$2"))
 mm_home=($(mm "$3"))
 
+echo "==> Setting PARTLABELs"
 parted /dev/block/$mm_uefi[1]:0 name $mm_uefi[2] LINUX-UEFI
 parted /dev/block/$mm_root[1]:0 name $mm_root[2] LINUX-ROOT
 parted /dev/block/$mm_home[1]:0 name $mm_home[2] LINUX-HOME
+
+echo "==> Setting UEFI partition type to EFI System Partition"
+parted /dev/block/$mm_uefi[1]:0 toggle $mm_uefi[2] esp on
 
 echo "==> Creating FAT32 partition for $1:"
 mkfs.fat -F32 -n LINUX-UEFI "$1"
@@ -45,7 +48,7 @@ mkfs.btrfs --label LINUX-HOME-DECRYPT /dev/mapper/home
 
 echo "==> Mounting and creating subvolumes:"
 
-mount /dev/mapper/root /mnt -o compress=zstd:1
+mount "$2" /mnt -o compress=zstd:1
 
 for i in @ @varlog @varcache
 do
@@ -53,12 +56,12 @@ do
 done
 
 umount /mnt
-mount /dev/mapper/root /mnt -o compress=zstd:1,subvol=@
+mount "$2" /mnt -o compress=zstd:1,subvol=@
 
 mkdir -p /mnt/{boot/efi,home,var/{log,cache}}
 
-mount /dev/mapper/root /mnt/var/log -o compress=zstd:1,subvol=@varlog
-mount /dev/mapper/root /mnt/var/cache -o compress=zstd:1,subvol=@varcache
+mount "$2" /mnt/var/log -o compress=zstd:1,subvol=@varlog
+mount "$2" /mnt/var/cache -o compress=zstd:1,subvol=@varcache
 
 mount "$1" /mnt/boot/efi
 
