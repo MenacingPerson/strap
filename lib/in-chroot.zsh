@@ -4,7 +4,7 @@
 
 . $(dirname $(realpath "$0"))/common.zsh
 
-echo "====> Press enter to choose locale now."
+echo "====> Press enter to choose timezone now."
 read -rsk 1
 ln -s /usr/share/zoneinfo/"$(cd /usr/share/zoneinfo; fzf)" /etc/localtime
 hwclock --systohc
@@ -25,4 +25,4 @@ chsh -s /usr/bin/fish
 
 echo "Do more setup now..."
 
-exec zsh
+exec fish
