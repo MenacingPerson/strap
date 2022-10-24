@@ -39,7 +39,7 @@ echo "==> Creating FAT32 partition for $1:"
 mkfs.fat -F32 -n LINUX-UEFI "$1"
 
 echo "==> Creating 'root' for $2:"
-mkfs.btrfs --label LINUX-ROOT "$2"
+mkfs.btrfs -f --label LINUX-ROOT "$2"
 
 echo "==> Creating LUKS container 'home' for $3:"
 cryptsetup luksFormat --label LINUX-HOME "$3" -q <<< "$PASS"
