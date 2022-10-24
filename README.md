@@ -19,6 +19,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # Strap
 
 ```sh
-. <(curl -L samisafool.github.io/strap/curl.sh) # Make sure to mark ESP Type as EFI System Partition
+. <(curl -L samisafool.github.io/strap/curl.sh)
 ./main <Boot partition> <Root partition> <Home partition>
 ```
