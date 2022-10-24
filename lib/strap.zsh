@@ -25,7 +25,8 @@ genfstab -U /mnt
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-cat ./crypttab >> /mnt/etc/crypttab
+cp /mnt/etc/crypttab /mnt/etc/crypttab.initramfs
+cat ./crypttab.initramfs >> /mnt/etc/crypttab.initramfs
 
 echo 'en_US.UTF-8 UTF-8' >> /mnt/etc/locale.gen
 

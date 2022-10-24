@@ -1,0 +1,1 @@
+root           PARTLABEL=LINUX-ROOT                             none                    discard,tpm2-device=auto
