@@ -17,6 +17,10 @@ function ask {
     echo
 }
 
+function mm {
+    lsblk "$1" -no MAJ:MIN | sed 's/:/ /g'
+}
+
 function ins {
     pacman -S --needed --noconfirm $@
 }

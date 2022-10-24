@@ -23,13 +23,20 @@ do
     fi
 done
 
+echo "==> Setting PARTLABELs"
+mm_uefi=($(mm "$1"))
+mm_root=($(mm "$2"))
+mm_home=($(mm "$3"))
+
+parted /dev/block/$mm_uefi[1] name $mm_uefi[2] LINUX-UEFI
+parted /dev/block/$mm_root[1] name $mm_root[2] LINUX-ROOT
+parted /dev/block/$mm_home[1] name $mm_home[2] LINUX-HOME
+
 echo "==> Creating FAT32 partition for $1:"
 mkfs.fat -F32 -n LINUX-UEFI "$1"
 
-echo "==> Creating LUKS container 'root' for $2:"
-cryptsetup luksFormat --label LINUX-ROOT "$2" -q <<< "$PASS"
-cryptsetup open "$2" root <<< "$PASS"
-mkfs.btrfs --label LINUX-ROOT-DECRYPT /dev/mapper/root
+echo "==> Creating 'root' for $2:"
+mkfs.btrfs --label LINUX-ROOT "$2"
 
 echo "==> Creating LUKS container 'home' for $3:"
 cryptsetup luksFormat --label LINUX-HOME "$3" -q <<< "$PASS"

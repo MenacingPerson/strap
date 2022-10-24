@@ -1,1 +1,1 @@
-home           LABEL=LINUX-HOME                             none                    discard,tpm2-device=auto
+home           PARTLABEL=LINUX-HOME                             none                    discard,tpm2-device=auto
