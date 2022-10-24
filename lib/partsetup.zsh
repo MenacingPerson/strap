@@ -28,9 +28,9 @@ mm_uefi=($(mm "$1"))
 mm_root=($(mm "$2"))
 mm_home=($(mm "$3"))
 
-parted /dev/block/$mm_uefi[1] name $mm_uefi[2] LINUX-UEFI
-parted /dev/block/$mm_root[1] name $mm_root[2] LINUX-ROOT
-parted /dev/block/$mm_home[1] name $mm_home[2] LINUX-HOME
+parted /dev/block/$mm_uefi[1]:0 name $mm_uefi[2] LINUX-UEFI
+parted /dev/block/$mm_root[1]:0 name $mm_root[2] LINUX-ROOT
+parted /dev/block/$mm_home[1]:0 name $mm_home[2] LINUX-HOME
 
 echo "==> Creating FAT32 partition for $1:"
 mkfs.fat -F32 -n LINUX-UEFI "$1"
