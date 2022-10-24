@@ -4,6 +4,7 @@
 
 set -e
 
-pacman -S --needed --noconfirm zsh
+pacman-key --init
+pacman-key --populate
 
 exec ./lib/main.zsh $@
