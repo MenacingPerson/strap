@@ -38,8 +38,10 @@ parted /dev/block/$mm_uefi[1]:0 set $mm_uefi[2] esp on
 echo "==> Creating FAT32 partition for $1:"
 mkfs.fat -F32 -n LINUX-UEFI "$1"
 
-echo "==> Creating 'root' for $2:"
-mkfs.btrfs -f --label LINUX-ROOT "$2"
+echo "==> Creating LUKS container 'root' for $2:"
+cryptsetup luksFormat --label LINUX-ROOT "$3" -q <<< "$PASS"
+cryptsetup open "$3" home <<< "$PASS"
+mkfs.btrfs --label LINUX-ROOT-DECRYPT /dev/mapper/root
 
 echo "==> Creating LUKS container 'home' for $3:"
 cryptsetup luksFormat --label LINUX-HOME "$3" -q <<< "$PASS"
@@ -48,22 +50,24 @@ mkfs.btrfs --label LINUX-HOME-DECRYPT /dev/mapper/home
 
 echo "==> Mounting and creating subvolumes:"
 
-mount "$2" /mnt -o compress=zstd:1
+echo "===> Mounting $1 (uefi):"
+mount "$1" /mnt/boot/efi
 
-for i in @ @varlog @varcache
+echo "===> Mounting and configuring $2 (root):"
+mount /dev/mapper/root /mnt -o compress=zstd:1
+
+for i in (@ @varlog @varcache)
 do
     btrfs subvolume create /mnt/$i
 done
 
 umount /mnt
-mount "$2" /mnt -o compress=zstd:1,subvol=@
+mount /dev/mapper/root /mnt -o compress=zstd:1,subvol=@
 
 mkdir -p /mnt/{boot/efi,home,var/{log,cache}}
 
-mount "$2" /mnt/var/log -o compress=zstd:1,subvol=@varlog
-mount "$2" /mnt/var/cache -o compress=zstd:1,subvol=@varcache
-
-mount "$1" /mnt/boot/efi
+mount /dev/mapper/root /mnt/var/log -o compress=zstd:1,subvol=@varlog
+mount /dev/mapper/root /mnt/var/cache -o compress=zstd:1,subvol=@varcache
 
 mount /dev/mapper/home /mnt/home -o compress=zstd:1
 btrfs subvolume create /mnt/home/@home
