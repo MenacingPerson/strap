@@ -4,7 +4,4 @@
 
 set -e
 
-pacman-key --init
-pacman-key --populate
-
 exec ./lib/main.zsh $@

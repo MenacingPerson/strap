@@ -51,7 +51,9 @@ mkfs.btrfs --label LINUX-HOME-DECRYPT /dev/mapper/home
 echo "==> Mounting and creating subvolumes:"
 
 echo "===> Creating necessary folders:"
-mkdir -p /mnt/{boot/efi,home,var/{log,cache}}
+mkdir -p /mnt/boot/efi
+mkdir -p /mnt/home
+mkdir -p /mnt/var/{log,cache}
 
 echo "===> Mounting $1 (uefi):"
 mount "$1" /mnt/boot/efi
