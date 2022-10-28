@@ -39,8 +39,8 @@ echo "==> Creating FAT32 partition for $1:"
 mkfs.fat -F32 -n LINUX-UEFI "$1"
 
 echo "==> Creating LUKS container 'root' for $2:"
-cryptsetup luksFormat --label LINUX-ROOT "$3" -q <<< "$PASS"
-cryptsetup open "$3" home <<< "$PASS"
+cryptsetup luksFormat --label LINUX-ROOT "$2" -q <<< "$PASS"
+cryptsetup open "$2" home <<< "$PASS"
 mkfs.btrfs --label LINUX-ROOT-DECRYPT /dev/mapper/root
 
 echo "==> Creating LUKS container 'home' for $3:"
