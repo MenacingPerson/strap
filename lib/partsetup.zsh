@@ -59,7 +59,7 @@ mount "$1" /mnt/boot/efi
 echo "===> Mounting and configuring $2 (root):"
 mount /dev/mapper/root /mnt -o compress=zstd:1
 
-for i in (@ @varlog @varcache)
+for i in @ @varlog @varcache
 do
     btrfs subvolume create /mnt/$i
 done
