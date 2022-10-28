@@ -60,13 +60,15 @@ do
 done
 umount /mnt
 mount /dev/mapper/root /mnt -o compress=zstd:1,subvol=@
-mount /dev/mapper/root /mnt/var/log -o compress=zstd:1,subvol=@varlog
-mount /dev/mapper/root /mnt/var/cache -o compress=zstd:1,subvol=@varcache
 
 echo "===> Creating necessary folders:"
 mkdir -p /mnt/boot/efi
 mkdir -p /mnt/home
 mkdir -p /mnt/var/{log,cache}
+
+echo "===> Mounting root subvolumes:"
+mount /dev/mapper/root /mnt/var/log -o compress=zstd:1,subvol=@varlog
+mount /dev/mapper/root /mnt/var/cache -o compress=zstd:1,subvol=@varcache
 
 echo "===> Mounting $1 (uefi):"
 mount "$1" /mnt/boot/efi
