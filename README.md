@@ -19,7 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # Strap
 
 ```sh
-$ . <(curl -L samisafool.github.io/strap/curl.sh)
+$ . <(curl -L samisafool.github.io/strap/curl)
 $ cfdisk [drives]
 $ ./main [Boot partition] [Root partition] [Home partition]
 ```

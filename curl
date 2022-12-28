@@ -2,6 +2,6 @@
 
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-pacman -Sy --needed --noconfirm git zsh
+pacman -Sy --needed --noconfirm git
 git clone https://github.com/Samisafool/strap.git
 cd strap
