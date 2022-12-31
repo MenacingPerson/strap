@@ -15,7 +15,7 @@ timedatectl set-ntp true
 
 ins -y archlinux-keyring
 
-pacstrap /mnt base base-devel linux-lts linux-firmware \
+pacstrap /mnt base base-devel linux-zen linux-firmware \
               networkmanager vim btrfs-progs zsh \
               yadm polkit zsh fish git fzf
 
