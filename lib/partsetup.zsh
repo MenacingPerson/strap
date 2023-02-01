@@ -54,7 +54,7 @@ echo "==> Mounting and creating subvolumes:"
 
 echo "===> Mounting and configuring $2 (root):"
 mount /dev/mapper/root /mnt -o compress=zstd:1
-for i in @ @varlog @varcache
+for i in @ @varlog @varcache @swap
 do
     btrfs subvolume create /mnt/$i
 done
@@ -65,10 +65,12 @@ echo "===> Creating necessary folders:"
 mkdir -p /mnt/boot/efi
 mkdir -p /mnt/home
 mkdir -p /mnt/var/{log,cache}
+mkdir -p /mnt/swap
 
 echo "===> Mounting root subvolumes:"
 mount /dev/mapper/root /mnt/var/log -o compress=zstd:1,subvol=@varlog
 mount /dev/mapper/root /mnt/var/cache -o compress=zstd:1,subvol=@varcache
+mount /dev/mapper/root /mnt/swap -o subvol=@swap
 
 echo "===> Mounting $1 (uefi):"
 mount "$1" /mnt/boot/efi
@@ -78,5 +80,9 @@ mount /dev/mapper/home /mnt/home -o compress=zstd:1
 btrfs subvolume create /mnt/home/@home
 umount /mnt/home
 mount /dev/mapper/home /mnt/home -o compress=zstd:1,subvol=@home
+
+echo "===> Configuring swap"
+btrfs filesystem mkswapfile -s 8G /mnt/swap/swap
+swapon /mnt/swap/swap
 
 echo "Complete!"
